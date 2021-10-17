@@ -22,25 +22,7 @@ gulp.task("build-js", () => {
                         filename: 'script.js'
                     },
                     watch: false,
-                    devtool: "source-map",
-                    module: {
-                        rules: [
-                          {
-                            test: /\.m?js$/,
-                            exclude: /(node_modules|bower_components)/,
-                            use: {
-                              loader: 'babel-loader',
-                              options: {
-                                presets: [['@babel/preset-env', {
-                                    debug: true,
-                                    corejs: 3,
-                                    useBuiltIns: "usage"
-                                }]]
-                              }
-                            }
-                          }
-                        ]
-                      }
+                    devtool: "source-map"
                 }))
                 .pipe(gulp.dest(dist + '/js'))
                 .pipe(browsersync.stream());
