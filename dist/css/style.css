@@ -47,12 +47,6 @@ a {
   font-size: 36px;
   font-weight: 400; }
 
-.hide {
-  display: none; }
-
-.show {
-  display: block; }
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -159,12 +153,6 @@ a {
     font-weight: 300;
     line-height: 36px;
     color: rgba(0, 0, 0, 0.7); }
-
-.hide {
-  display: none; }
-
-.show {
-  display: block; }
 
 .fade {
   animation-name: fade;
@@ -486,6 +474,7 @@ a {
 
 .modal {
   position: fixed;
+  display: none;
   top: 0;
   left: 0;
   z-index: 1050;
@@ -536,3 +525,9 @@ a {
     display: block;
     width: 280px;
     margin: 0 auto; }
+
+.show {
+  display: block; }
+
+.hide {
+  display: none; }
