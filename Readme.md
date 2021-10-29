@@ -25,3 +25,10 @@ gulp
 ```sh
 gulp build --prod
 ```
+
+Для отрисовки карточек меню необходимо установить и запустить json-server:
+
+```sh
+npm i -D json-server
+npx json-server --watch db.json
+```
