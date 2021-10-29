@@ -15,15 +15,36 @@ gulp.task("copy-html", () => {
 });
 
 gulp.task("build-js", () => {
-    return gulp.src("./src/js/main.js")
+    return gulp.src("./src/js/script.js")
                 .pipe(webpack({
                     mode: 'development',
                     output: {
-                        filename: 'script.js'
+                      filename: 'script.js',
+                      path: __dirname + '/js'
                     },
-                    watch: false,
-                    devtool: "source-map"
-                }))
+                    watch: true,
+                  
+                    devtool: "source-map",
+                  
+                    module: {
+                      rules: [
+                        {
+                          test: /\.m?js$/,
+                          exclude: /(node_modules|bower_components)/,
+                          use: {
+                            loader: 'babel-loader',
+                            options: {
+                              presets: [['@babel/preset-env', {
+                                  debug: true,
+                                  corejs: 3,
+                                  useBuiltIns: "usage"
+                              }]]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }))
                 .pipe(gulp.dest(dist + '/js'))
                 .pipe(browsersync.stream());
 });
@@ -70,28 +91,33 @@ gulp.task("prod", () => {
 
     gulp.src("./src/js/main.js")
         .pipe(webpack({
-            mode: 'production',
-            output: {
-                filename: 'script.js'
-            },
-            module: {
-                rules: [
-                  {
-                    test: /\.m?js$/,
-                    exclude: /(node_modules|bower_components)/,
-                    use: {
-                      loader: 'babel-loader',
-                      options: {
-                        presets: [['@babel/preset-env', {
-                            debug: false,
-                            corejs: 3,
-                            useBuiltIns: "usage"
-                        }]]
-                      }
-                    }
+          mode: 'production',
+          output: {
+            filename: 'script.js',
+            path: __dirname + '/js'
+          },
+          watch: true,
+        
+          devtool: "source-map",
+        
+          module: {
+            rules: [
+              {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: [['@babel/preset-env', {
+                        debug: true,
+                        corejs: 3,
+                        useBuiltIns: "usage"
+                    }]]
                   }
-                ]
+                }
               }
+            ]
+          }
         }))
         .pipe(gulp.dest(dist + '/js'));
     
