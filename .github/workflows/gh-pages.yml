@@ -33,3 +33,5 @@ jobs:
           FOLDER: ./dist
           BRANCH: gh-pages
           SINGLE_COMMIT: false
+
+          # Тест экшена
