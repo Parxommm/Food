@@ -22,7 +22,7 @@ gulp.task("build-js", () => {
                       filename: 'script.js',
                       path: __dirname + '/js'
                     },
-                    watch: true,
+                    watch: false,
                   
                     devtool: "source-map",
                   
@@ -96,7 +96,7 @@ gulp.task("prod", () => {
             filename: 'script.js',
             path: __dirname + '/js'
           },
-          watch: true,
+          watch: false,
         
           devtool: "source-map",
         
@@ -128,4 +128,4 @@ gulp.task("prod", () => {
         .pipe(gulp.dest(dist + '/css'));
 });
 
-gulp.task("default", gulp.parallel("watch", "build"));
+gulp.task("default", gulp.parallel("build"));
